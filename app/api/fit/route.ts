@@ -41,7 +41,7 @@ export async function POST(request: Request) {
   }
 
   // const prompt = [
-  //   "You are a recruiting assistant.",
+  //   "You are a recruiting assistant. ",
   //   "Compare the candidate profile to the role description and return JSON only.",
   //   "Return keys: match (boolean), score (0-100 number), summary (string), strengths (string[]), gaps (string[]), recommendations (string[]).",
   //   "",
