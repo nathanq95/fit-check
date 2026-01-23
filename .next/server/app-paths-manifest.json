@@ -1,3 +1,4 @@
 {
+  "/api/fit/route": "app/api/fit/route.js",
   "/page": "app/page.js"
 }

@@ -3,20 +3,34 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import type { ChangeEvent } from "react";
 
 type ProfileData = {
   name: string;
   linkedin: string;
   github: string;
   portfolio: string;
+  yoe: string;
+  title: string;
+  roles: string;
+  projects: string;
+  resumeName: string;
+  resumeType: string;
+  resumeData: string;
+  resumeText: string;
 };
 
 type ProfileCardProps = {
   profile: ProfileData;
   onProfileChange: (field: keyof ProfileData, value: string) => void;
+  onSave: () => void;
 };
 
-export default function ProfileCard({ profile, onProfileChange }: ProfileCardProps) {
+export default function ProfileCard({ profile, onProfileChange, onSave }: ProfileCardProps) {
+  const handleResumeChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    onProfileChange("resumeText", event.target.value);
+  };
+
   return (
     <div className="h-100 fitcheck-main">
       <Card className="h-100 flex-grow-1 overflow-hidden border-0 shadow-sm rounded-4 bg-white bg-opacity-75">
@@ -38,8 +52,11 @@ export default function ProfileCard({ profile, onProfileChange }: ProfileCardPro
                     </div>
                     <div className="w-25 mb-3 d-flex flex-row align-items-center gap-3">
                         <Form.Label className="small fw-semibold mb-1">Years of Experience</Form.Label>
-                        <Form.Select>
-                            <option>Select YOE</option>
+                        <Form.Select
+                            value={profile.yoe}
+                            onChange={(event) => onProfileChange("yoe", event.target.value)}
+                        >
+                            <option value="">Select YOE</option>
                             <option>0-1 years</option>
                             <option>2-4 years</option>
                             <option>5-7 years</option>
@@ -52,6 +69,8 @@ export default function ProfileCard({ profile, onProfileChange }: ProfileCardPro
                             type="text"
                             placeholder="e.g. Software Engineer"
                             className=" flex-grow-1 rounded-3 w-25"
+                            value={profile.title}
+                            onChange={(event) => onProfileChange("title", event.target.value)}
                         />
                     </div>
                     <div className="w-50 mb-3 d-flex flex-row align-items-center gap-3">
@@ -60,6 +79,8 @@ export default function ProfileCard({ profile, onProfileChange }: ProfileCardPro
                             type="text"
                             placeholder="e.g. Full-Stack"
                             className=" flex-grow-1 rounded-3 w-50"
+                            value={profile.roles}
+                            onChange={(event) => onProfileChange("roles", event.target.value)}
                         />
                     </div>
                 </div>
@@ -73,11 +94,20 @@ export default function ProfileCard({ profile, onProfileChange }: ProfileCardPro
                             as="textarea"
                             rows={3}
                             style={{ resize: "both" }} 
+                            value={profile.projects}
+                            onChange={(event) => onProfileChange("projects", event.target.value)}
                         />
                     </div>
                     <div className="w-50 mb-3 d-flex flex-row align-items-center gap-3">
                         <Form.Label className="small fw-semibold mb-1">Resume</Form.Label>
-                        <Form.Control type="file" className="flex-grow-1 rounded-3" />
+                        <Form.Control
+                            as="textarea"
+                            rows={3}
+                            placeholder="Paste your resume here"
+                            className="flex-grow-1 rounded-3"
+                            value={profile.resumeText}
+                            onChange={handleResumeChange}
+                        />
                     </div>
                 </div>
             </div>
@@ -119,7 +149,7 @@ export default function ProfileCard({ profile, onProfileChange }: ProfileCardPro
 
             <div className="mt-4">
 
-            <Button variant="dark" className="mt-3 rounded-3">
+            <Button variant="dark" className="mt-3 rounded-3" onClick={onSave}>
                 Save
             </Button>
             </div>

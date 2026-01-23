@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProfilePanel from "./components/ProfilePanel";
 import RoleCard from "./components/RoleCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProfileCard from "./components/ProfileCard";
 
 type ProfileData = {
@@ -13,6 +13,14 @@ type ProfileData = {
   linkedin: string;
   github: string;
   portfolio: string;
+  yoe: string;
+  title: string;
+  roles: string;
+  projects: string;
+  resumeName: string;
+  resumeType: string;
+  resumeData: string;
+  resumeText: string;
 };
 
 export default function Page() {
@@ -22,11 +30,36 @@ export default function Page() {
     linkedin: "",
     github: "",
     portfolio: "",
+    yoe: "",
+    title: "",
+    roles: "",
+    projects: "",
+    resumeName: "",
+    resumeType: "",
+    resumeData: "",
+    resumeText: "",
   });
 
   const handleProfileChange = (field: keyof ProfileData, value: string) => {
     setProfile((prev) => ({ ...prev, [field]: value }));
   };
+
+  const handleProfileSave = () => {
+    localStorage.setItem("fitcheck-profile", JSON.stringify(profile));
+  };
+
+  useEffect(() => {
+    const storedProfile = localStorage.getItem("fitcheck-profile");
+    if (!storedProfile) {
+      return;
+    }
+    try {
+      const parsedProfile = JSON.parse(storedProfile) as Partial<ProfileData>;
+      setProfile((prev) => ({ ...prev, ...parsedProfile }));
+    } catch {
+      // ignore invalid stored profile
+    }
+  }, []);
 
   return (
     <Container fluid className="fitcheck-shell px-0">
@@ -36,11 +69,12 @@ export default function Page() {
             <ProfilePanel editMode={editMode} setEditMode={setEditMode} profile={profile} />
           </Col>
           <Col xs={12} md={8} lg={9} className="h-100 overflow-auto">
-            {!editMode && <RoleCard />}
+            {!editMode && <RoleCard profile={profile} />}
             {editMode && (
               <ProfileCard
                 profile={profile}
                 onProfileChange={handleProfileChange}
+                onSave={handleProfileSave}
               />
             )}
           </Col>
