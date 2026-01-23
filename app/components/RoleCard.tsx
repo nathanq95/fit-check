@@ -101,7 +101,7 @@ export default function RoleCard({ profile }: RoleCardProps) {
   return (
     <div className="h-100 fitcheck-main">
       <Card className="h-100 flex-grow-1 overflow-hidden border-0 shadow-sm rounded-4 bg-white bg-opacity-75">
-        <Card.Body className="d-flex flex-column fitcheck-card-body">
+        <Card.Body className="d-flex flex-column fitcheck-card-body m-5">
           <Card.Title className="fs-6 fw-semibold mb-2">Role description</Card.Title>
 
           <Form.Control

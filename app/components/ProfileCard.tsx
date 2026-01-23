@@ -24,9 +24,10 @@ type ProfileCardProps = {
   profile: ProfileData;
   onProfileChange: (field: keyof ProfileData, value: string) => void;
   onSave: () => void;
+  onClose: () => void;
 };
 
-export default function ProfileCard({ profile, onProfileChange, onSave }: ProfileCardProps) {
+export default function ProfileCard({ profile, onProfileChange, onSave, onClose }: ProfileCardProps) {
   const handleResumeChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     onProfileChange("resumeText", event.target.value);
   };
@@ -35,7 +36,20 @@ export default function ProfileCard({ profile, onProfileChange, onSave }: Profil
     <div className="h-100 fitcheck-main">
       <Card className="h-100 flex-grow-1 overflow-hidden border-0 shadow-sm rounded-4 bg-white bg-opacity-75">
         <Card.Body className="d-flex flex-column fitcheck-card-body">
-          <Card.Title className="align-self-center fs-6 fw-semibold mb-2">Profile</Card.Title>
+          <div className="d-flex align-items-center justify-content-between mb-2">
+            <Button
+              variant="outline-dark"
+              size="sm"
+              className="rounded-2"
+              aria-label="Close profile editor"
+              title="Close"
+              onClick={onClose}
+            >
+              <i className="bi bi-x-lg" aria-hidden="true" />
+            </Button>
+            <Card.Title className="mb-0 fs-6 fw-semibold">Profile</Card.Title>
+            <div style={{ width: 32 }} />
+          </div>
 
             <div className="m-5">
                 <h5 className="fs-6 fw-semibold mb-4">Core Identity</h5>
@@ -88,25 +102,27 @@ export default function ProfileCard({ profile, onProfileChange, onSave }: Profil
             <div className="m-5">
                 <h5 className="fs-6 fw-semibold mb-4">Experience Highlights</h5>
                 <div className="d-flex w-100 gap-4 flex-wrap">
-                    <div className="w-100 mb-3 d-flex flex-row gap-3">
-                        <Form.Label className="small fw-semibold mb-1">Key Projects/Accomplishments</Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            rows={3}
-                            style={{ resize: "both" }} 
-                            value={profile.projects}
-                            onChange={(event) => onProfileChange("projects", event.target.value)}
-                        />
-                    </div>
-                    <div className="w-50 mb-3 d-flex flex-row align-items-center gap-3">
-                        <Form.Label className="small fw-semibold mb-1">Resume</Form.Label>
+                    <div className="w-100 mb-3 d-flex row gap-3">
+                        <Form.Label className="small col-2 fw-semibold mb-1">Resume</Form.Label>
                         <Form.Control
                             as="textarea"
                             rows={3}
                             placeholder="Paste your resume here"
-                            className="flex-grow-1 rounded-3"
+                            className="col w-50 rounded-3"
                             value={profile.resumeText}
+                            style={{ resize: "both" }} 
                             onChange={handleResumeChange}
+                        />
+                    </div>
+                    <div className="w-100 mb-3 d-flex row gap-3">
+                        <Form.Label className="col-2 small fw-semibold mb-1">Highlights</Form.Label>
+                        <Form.Control
+                            as="textarea"
+                            rows={3}
+                            className="col w-50 rounded-3"
+                            value={profile.projects}
+                            style={{ resize: "both" }} 
+                            onChange={(event) => onProfileChange("projects", event.target.value)}
                         />
                     </div>
                 </div>
@@ -115,7 +131,7 @@ export default function ProfileCard({ profile, onProfileChange, onSave }: Profil
                 <h5 className="fs-6 fw-semibold mb-4">Social Links</h5>
                     <div className="d-flex w-100 gap-4 flex-wrap">
                         <div className="w-50 mb-3 d-flex flex-row align-items-center gap-3">
-                        <Form.Label className="small flex-fill fw-semibold mb-1">LinkedIn</Form.Label>
+                        <Form.Label className="small col-2 fw-semibold mb-1">LinkedIn</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="e.g. John Doe"
@@ -125,7 +141,7 @@ export default function ProfileCard({ profile, onProfileChange, onSave }: Profil
                         />
                     </div>
                         <div className="w-50 mb-3 d-flex flex-row align-items-center gap-3">
-                            <Form.Label className="small flex-fill fw-semibold mb-1">GitHub</Form.Label>
+                            <Form.Label className="small col-2 fw-semibold mb-1">GitHub</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="e.g. John Doe"
@@ -135,7 +151,7 @@ export default function ProfileCard({ profile, onProfileChange, onSave }: Profil
                             />
                         </div>
                         <div className="w-50 mb-3 d-flex flex-row align-items-center gap-3">
-                            <Form.Label className="small flex-fill fw-semibold mb-1">Portfolio</Form.Label>
+                            <Form.Label className="small col-2 fw-semibold mb-1">Portfolio</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="e.g. John Doe"
@@ -149,7 +165,7 @@ export default function ProfileCard({ profile, onProfileChange, onSave }: Profil
 
             <div className="mt-4">
 
-            <Button variant="dark" className="mt-3 rounded-3" onClick={onSave}>
+            <Button variant="dark" className="m-5 rounded-3" onClick={onSave}>
                 Save
             </Button>
             </div>

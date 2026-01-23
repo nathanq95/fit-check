@@ -106,8 +106,6 @@ export async function POST(request: Request) {
   payload.profile.resumeText || "(no resume text provided)",
 ].join("\n");
 
-  console.log("payload", payload);
-
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {

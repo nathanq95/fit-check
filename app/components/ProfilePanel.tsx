@@ -37,11 +37,22 @@ export default function ProfilePanel({ editMode, setEditMode, profile }: Profile
     <div className="p-3 p-md-4 h-100 fitcheck-sidebar">
       <Card className="h-100 border-0 shadow-sm rounded-4 bg-white bg-opacity-75">
         <Card.Body>
+          <div className="m-3">
+            <Button
+              variant={editMode ? "dark" : "outline-dark"}
+              className={`rounded-2 d-flex align-items-center justify-content-center ${editMode ? "active" : ""}`}
+              aria-label="Edit profile"
+              title="Edit profile"
+              onClick={() => editMode ? setEditMode(false) : setEditMode(true)}
+              disabled={editMode}
+            >
+              <i className="bi bi-person fs-3" aria-hidden="true" />
+            </Button>
+          </div>
           <Card.Title className="fs-6 fw-semibold mb-1">Saved Profile Information</Card.Title>
           <Card.Text className="text-muted small mb-3">
             Quick inputs used for tailoring.
           </Card.Text>
-
           <div className="d-flex flex-column gap-2">
             <div className="d-flex align-items-center gap-2">
               <Button
@@ -95,12 +106,6 @@ export default function ProfilePanel({ editMode, setEditMode, profile }: Profile
               </Button>
               <div className="text-muted small justify-content-start">{portfolioValue}</div>
             </div>
-          </div>
-
-          <div className="mt-3">
-            <Button variant="outline-dark" className="w-100 rounded-3" onClick={() => editMode ? setEditMode(false) : setEditMode(true)}>
-              Edit profile
-            </Button>
           </div>
         </Card.Body>
       </Card>

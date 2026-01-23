@@ -75,6 +75,7 @@ export default function Page() {
                 profile={profile}
                 onProfileChange={handleProfileChange}
                 onSave={handleProfileSave}
+                onClose={() => setEditMode(false)}
               />
             )}
           </Col>
