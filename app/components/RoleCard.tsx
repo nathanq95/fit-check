@@ -103,6 +103,9 @@ export default function RoleCard({ profile }: RoleCardProps) {
       <Card className="h-100 flex-grow-1 overflow-hidden border-0 shadow-sm rounded-4 bg-white bg-opacity-75">
         <Card.Body className="d-flex flex-column fitcheck-card-body m-5">
           <Card.Title className="fs-6 fw-semibold mb-2">Role description</Card.Title>
+            <div className="text-muted small">
+              Assess alignment based on your profile and job requirements.
+            </div>
 
           <Form.Control
             as="textarea"
@@ -114,66 +117,68 @@ export default function RoleCard({ profile }: RoleCardProps) {
           />
 
           <div className="mt-4">
-            <div className="text-muted small">
-              Assess alignment based on your profile and job requirements.
+            <div className="d-flex flex-row justify-content-start gap-3">
+              <Button
+                variant="dark"
+                className="mt-3 rounded-3"
+                disabled={loading || fitScore !== null}
+                onClick={handleCheckFit}
+              >
+                {loading ? "Checking..." : "Check Fit"}
+              </Button>
+              <Button
+                variant="outline-dark"
+                className="mt-3 rounded-3"
+              >
+                Mark as Applied
+              </Button>
             </div>
-
-            <Button
-              variant="dark"
-              className="mt-3 rounded-3"
-              disabled={loading}
-              onClick={handleCheckFit}
-            >
-              {loading ? "Checking..." : "Check Fit"}
-            </Button>
           </div>
 
           {errorMessage && (
             <div className="mt-3 text-danger small">{errorMessage}</div>
           )}
-
           {fitScore !== null && (
-            <div className="mt-3 d-flex align-self-center align-items-center gap-3">
-              <div
-                aria-label={`Fit score ${fitScore}%`}
-                role="img"
-                style={{
-                  width: 88,
-                  height: 88,
-                  borderRadius: "50%",
-                  background: `conic-gradient(${getScoreColor(fitScore)} ${fitScore}%, #e9ecef 0)`,
-                  display: "grid",
-                  placeItems: "center",
-                }}
-              >
+            <div className="mt-3 d-flex flex-column">
+              <h5 className="align-self-center">Fit Score</h5>
+              <div className="w-100 d-flex align-self-center align-items-center gap-3">
                 <div
+                  aria-label={`Fit score ${fitScore}%`}
+                  role="img"
                   style={{
-                    width: 64,
-                    height: 64,
-                    borderRadius: "50%",
-                    background: "#ffffff",
-                    display: "grid",
-                    placeItems: "center",
-                    fontWeight: 600,
-                    color: getScoreColor(fitScore),
+                    width: "100%",
+                    height: 14,
+                    borderRadius: 999,
+                    background: "#e9ecef",
+                    overflow: "hidden",
+                    boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.04)",
                   }}
                 >
+                  <div
+                    style={{
+                      width: `${fitScore}%`,
+                      height: "100%",
+                      background: getScoreColor(fitScore),
+                      transition: "width 220ms ease",
+                    }}
+                  />
+                </div>
+                <div className="fw-semibold" style={{ color: getScoreColor(fitScore) }}>
                   {fitScore}%
                 </div>
-              </div>
-              <div className="text-muted small">
-                Fit score<br />
-                <span className="text-muted">
-                  {fitScore >= 80
-                    ? "Strong match"
-                    : fitScore >= 60
-                    ? "Good match"
-                    : fitScore >= 40
-                    ? "Possible match"
-                    : fitScore >= 20
-                    ? "Weak match"
-                    : "Poor match"}
-                </span>
+                <div className="text-muted small">
+                  <span className="text-muted">
+                    {fitScore >= 80
+                      ? "Strong match"
+                      : fitScore >= 60
+                      ? "Good match"
+                      : fitScore >= 40
+                      ? "Possible match"
+                      : fitScore >= 20
+                      ? "Weak match"
+                      : "Poor match"}
+                  </span>
+                </div>
               </div>
             </div>
           )}
@@ -185,7 +190,7 @@ export default function RoleCard({ profile }: RoleCardProps) {
               </pre>
             )} */}
 
-            {fitResult && <h1 className="fs-6 fw-semibold mb-1">Fit Assessment</h1>}
+            {fitResult && <h5 className="fs-7 fw-semibold mb-4">Fit Assessment</h5>}
             {fitSummary && (
               <div className="mt-3">
                 <div className="fw-semibold mb-1">Summary</div>
