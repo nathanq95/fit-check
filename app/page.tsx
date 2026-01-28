@@ -68,7 +68,7 @@ export default function Page() {
           <Col xs={12} md={4} lg={3} className="h-100">
             <ProfilePanel editMode={editMode} setEditMode={setEditMode} profile={profile} />
           </Col>
-          <Col xs={12} md={8} lg={9} className="h-100 overflow-auto">
+          <Col xs={12} md={8} lg={9} className="h-100">
             {!editMode && <RoleCard profile={profile} />}
             {editMode && (
               <ProfileCard

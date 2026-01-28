@@ -101,22 +101,23 @@ export default function RoleCard({ profile }: RoleCardProps) {
   return (
     <div className="h-100 fitcheck-main">
       <Card className="h-100 flex-grow-1 overflow-hidden border-0 shadow-sm rounded-4 bg-white bg-opacity-75">
-        <Card.Body className="d-flex flex-column fitcheck-card-body m-5">
-          <Card.Title className="fs-6 fw-semibold mb-2">Role description</Card.Title>
-            <div className="text-muted small">
+        <Card.Body className="d-flex flex-column fitcheck-card-body">
+          <Card.Title className="fs-6 fw-semibold mb-2 mt-5 mx-5">Role description</Card.Title>
+            <div className="text-muted small mx-5">
               Assess alignment based on your profile and job requirements.
             </div>
+            <div className="mb-3 d-flex row gap-3 mx-5">
+              <Form.Control
+                as="textarea"
+                rows={6}
+                placeholder="Paste a role description"
+                className="rounded-3"
+                value={roleText}
+                onChange={(event) => setRoleText(event.target.value)}
+              />
+            </div>
 
-          <Form.Control
-            as="textarea"
-            rows={6}
-            placeholder="Paste a role description"
-            className="rounded-3"
-            value={roleText}
-            onChange={(event) => setRoleText(event.target.value)}
-          />
-
-          <div className="mt-4">
+          <div className="mt-4 mx-5">
             <div className="d-flex flex-row justify-content-start gap-3">
               <Button
                 variant="dark"
@@ -139,7 +140,7 @@ export default function RoleCard({ profile }: RoleCardProps) {
             <div className="mt-3 text-danger small">{errorMessage}</div>
           )}
           {fitScore !== null && (
-            <div className="mt-3 d-flex flex-column">
+            <div className="mt-3 mx-5 d-flex flex-column">
               <h5 className="align-self-center">Fit Score</h5>
               <div className="w-100 d-flex align-self-center align-items-center gap-3">
                 <div
