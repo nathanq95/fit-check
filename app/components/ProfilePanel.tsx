@@ -70,7 +70,7 @@ export default function ProfilePanel({ editMode, setEditMode, profile }: Profile
               >
                 <i className="bi bi-clipboard" aria-hidden="true" />
               </Button>
-              <div className="text-muted small justify-content-start">{nameValue}</div>
+              <div className="text-muted small justify-content-start text-truncate">{nameValue}</div>
             </div>
             <div className="d-flex align-items-center gap-2">
               <Button
@@ -83,7 +83,7 @@ export default function ProfilePanel({ editMode, setEditMode, profile }: Profile
               >
                 <i className="bi bi-clipboard" aria-hidden="true" />
               </Button>
-              <div className="text-muted small justify-content-start">{linkedinValue}</div>
+              <div className="text-muted small justify-content-start text-truncate">{linkedinValue}</div>
             </div>
             <div className="d-flex align-items-center gap-2">
               <Button
@@ -96,7 +96,7 @@ export default function ProfilePanel({ editMode, setEditMode, profile }: Profile
               >
                 <i className="bi bi-clipboard" aria-hidden="true" />
               </Button>
-              <div className="text-muted small justify-content-start">{githubValue}</div>
+              <div className="text-muted small justify-content-start text-truncate">{githubValue}</div>
             </div>
             <div className="d-flex align-items-center gap-2">
               <Button
@@ -109,7 +109,7 @@ export default function ProfilePanel({ editMode, setEditMode, profile }: Profile
               >
                 <i className="bi bi-clipboard" aria-hidden="true" />
               </Button>
-              <div className="text-muted small justify-content-start">{portfolioValue}</div>
+              <div className="text-muted small justify-content-start text-truncate">{portfolioValue}</div>
             </div>
           </div>
         </Card.Body>
