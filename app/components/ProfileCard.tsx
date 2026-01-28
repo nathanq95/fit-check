@@ -36,23 +36,23 @@ export default function ProfileCard({ profile, onProfileChange, onSave, onClose 
     <div className="h-100 fitcheck-main">
       <Card className="h-100 flex-grow-1 overflow-hidden border-0 shadow-sm rounded-4 bg-white bg-opacity-75">
         <Card.Body className="d-flex flex-column fitcheck-card-body">
-          <div className="d-flex align-items-center justify-content-between mb-2">
-            <Button
-              variant="outline-dark"
-              size="sm"
-              className="rounded-2"
-              aria-label="Close profile editor"
-              title="Close"
-              onClick={onClose}
-            >
-              <i className="bi bi-x-lg" aria-hidden="true" />
-            </Button>
-            <Card.Title className="mb-0 fs-6 fw-semibold">Profile</Card.Title>
-            <div style={{ width: 32 }} />
-          </div>
+            <div className="d-flex align-items-center justify-content-between mb-2">
+                <Button
+                variant="outline-dark"
+                size="sm"
+                className="rounded-2"
+                aria-label="Close profile editor"
+                title="Close"
+                onClick={onClose}
+                >
+                <i className="bi bi-x-lg" aria-hidden="true" />
+                </Button>
+                <Card.Title className="mb-0 fs-6 fw-semibold">Profile</Card.Title>
+                <div style={{ width: 32 }} />
+            </div>
 
             <div className="m-5">
-                <h5 className="fs-6 fw-semibold mb-4">Core Identity</h5>
+                <h5 className="fs-7 fw-semibold mb-4">Core Identity</h5>
                 <div className="d-flex w-100 gap-4 flex-wrap">
                     <div className="w-50 mb-3 d-flex flex-row align-items-center gap-3">
                         <Form.Label className="small fw-semibold mb-1">Name</Form.Label>
@@ -99,8 +99,9 @@ export default function ProfileCard({ profile, onProfileChange, onSave, onClose 
                     </div>
                 </div>
             </div>
+            <span className="border-bottom mx-5"></span>
             <div className="m-5">
-                <h5 className="fs-6 fw-semibold mb-4">Experience Highlights</h5>
+                <h5 className="fs-7 fw-semibold mb-4">Experience Highlights</h5>
                 <div className="d-flex w-100 gap-4 flex-wrap">
                     <div className="w-100 mb-3 d-flex row gap-3">
                         <Form.Label className="small col-2 fw-semibold mb-1">Resume</Form.Label>
@@ -127,8 +128,9 @@ export default function ProfileCard({ profile, onProfileChange, onSave, onClose 
                     </div>
                 </div>
             </div>
+            <span className="border-bottom mx-5"></span>
             <div className="m-5">
-                <h5 className="fs-6 fw-semibold mb-4">Social Links</h5>
+                <h5 className="fs-7 fw-semibold mb-4">Social Links</h5>
                     <div className="d-flex w-100 gap-4 flex-wrap">
                         <div className="w-50 mb-3 d-flex flex-row align-items-center gap-3">
                         <Form.Label className="small col-2 fw-semibold mb-1">LinkedIn</Form.Label>
